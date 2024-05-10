@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Profil";
+}
+
+<div class="row">
+    <div class="col-4 offset-4">
+
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-4">
+
+        <div class="mb-4">
+            <div asp-validation-summary="All" class="text-danger small"></div>
+        </div>
+
+        <form method="post" asp-action="ProfileChangeFullName" asp-controller="Account">
+            <div class="form-group">
+                <label class="form-label small">Ad Soyad</label>
+                <div class="input-group mb-3">
+                    <input name="fullname" type="text" class="form-control" value="@ViewData["FullName"]" />
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-floppy-disk me-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <form method="post" asp-action="ProfileChangePassword" asp-controller="Account">
+            <div class="form-group">
+                <label class="form-label small">Yeni şifre</label>
+                <div class="input-group mb-3">
+                    <input name="password" type="password" class="form-control" />
+                    <button class="btn btn-secondary" type="submit">
+                        <i class="fa-solid fa-floppy-disk me-2"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts{
+    @if (ViewData["Result"] != null && ViewData["Result"] == "PasswordChanged")
+    {
+        <script>
+            toastr["success"]("Şifre başarıyla değiştirildi.", "ŞİFRE GÜNCELLENDİ");
+        </script>
+    }
+}
